@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musa Abdul Jabbar | Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #0f172a; 
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-hover: rgba(40, 55, 80, 0.9);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent-gold: #fbbf24;
+            --accent-blue: #38bdf8;
+            --accent-green: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Background Animation --- */
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(251,191,36,0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        .glow-1 { top: -50px; left: -50px; }
+        .glow-2 { bottom: 10%; right: -50px; }
+        .glow-3 { top: 40%; right: 20%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, rgba(0,0,0,0) 70%); }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 60px 0;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .avatar-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-gold);
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.4);
+            background-color: #1e293b;
+            transition: transform 0.3s;
+        }
+
+        .avatar:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .name-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .verified-badge {
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+            filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.5));
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .badge-list {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--accent-gold);
+        }
+
+        /* --- Glassmorphism Cards --- */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+            border-color: rgba(251, 191, 36, 0.3);
+        }
+
+        h2 {
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 3px;
+            background: var(--accent-gold);
+            margin-top: 5px;
+            border-radius: 2px;
+        }
+
+        /* --- Education & Location --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .info-item i {
+            color: var(--accent-gold);
+            margin-right: 15px;
+            margin-top: 5px;
+            font-size: 1.2rem;
+        }
+
+        .university {
+            font-weight: 700;
+            color: #fff;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* --- PROJECTS SECTION --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+            border-color: var(--accent-gold);
+        }
+
+        .project-img-wrapper {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        
+        /* Efek zoom saat hover */
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+
+        .status-live {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-green);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+            z-index: 2;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .project-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        
+        .project-title a:hover {
+            color: var(--accent-gold);
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .tech-tag {
+            font-size: 0.75rem;
+            background: rgba(251, 191, 36, 0.1);
+            color: var(--accent-gold);
+            padding: 4px 10px;
+            border-radius: 10px;
+        }
+
+        .btn-project {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-project:hover {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        /* --- Skills --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-item {
+            background: rgba(255,255,255,0.03);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .skill-item i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+            color: var(--text-secondary);
+        }
+
+        .skill-item:hover {
+            background: rgba(251, 191, 36, 0.1);
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+        .skill-item:hover i { color: var(--accent-gold); }
+
+        /* --- Contact --- */
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .btn-wa { background: #25D366; color: white; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        .btn-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3); }
+        .btn-email { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: var(--text-primary); }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .info-grid { grid-template-columns: 1fr 1fr; }
+            h1 { font-size: 3.5rem; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo"><i class="fas fa-code"></i> DHOELLS<span style="color:#fff">.DEV</span></div>
+        </header>
+
+        <section class="hero">
+            <div class="avatar-container">
+                <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=MusaDhoells&top=noHair&skinColor=brown&clothing=hoodie&clothingColor=black&eyes=happy&accessories=sunglasses" alt="Musa Abdul Jabbar" class="avatar">
+            </div>
+            
+            <div class="name-wrapper">
+                <h1>Musa Abdul Jabbar</h1>
+                <i class="fas fa-check-circle verified-badge" title="Verified Professional"></i>
+            </div>
+            
+            <p class="subtitle">Mahasiswa IT & Fullstack Developer Enthusiast</p>
+            
+            <div class="badge-list">
+                <span class="badge"><i class="fas fa-map-marker-alt"></i> Bekasi, ID</span>
+                <span class="badge"><i class="fas fa-birthday-cake"></i> <span id="age-display">Loading...</span> Tahun</span>
+                <span class="badge"><i class="fas fa-graduation-cap"></i> Univ. Gunadarma</span>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Tentang Saya</h2>
+            <div class="info-grid">
+                <div>
+                    <p style="margin-bottom: 20px; color: #cbd5e1;">
+                        Halo! Biasa dipanggil <b>Dhoells</b>. Saya adalah mahasiswa IT yang memiliki passion tinggi dalam pemrograman. Saya suka mengubah kopi menjadi kode dan membangun solusi digital yang elegan.
+                    </p>
+                    <div class="info-item">
+                        <i class="fas fa-university"></i>
+                        <div>
+                            <span class="university">Universitas Gunadarma</span>
+                            <span style="font-size: 0.9rem; color: var(--text-secondary);">Kampus J1 Kalimalang</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-pin"></i>
+                        <span style="font-size: 0.9rem; color: var(--text-secondary);">Jl. KH. Noer Ali, RT.005/RW.006A, Jakasampurna, Bekasi Barat, 17145</span>
+                    </div>
+                </div>
+                <div>
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.308696898864!2d106.9669!3d-6.2428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698c946f663469%3A0xb6967e811355436b!2sKampus%20J1%20Universitas%20Gunadarma!5e0!3m2!1sid!2sid!4v1700000000000" 
+                        width="100%" height="220" style="border:0; border-radius: 15px; filter: invert(90%) hue-rotate(180deg);" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="card" id="portfolio">
+            <h2>Karya & Project</h2>
+            <p style="margin-bottom: 20px; color: var(--text-secondary);">Beberapa proyek yang saya kembangkan:</p>
+            
+            <div class="project-grid">
+                
+                <div class="project-card">
+                    <div class="project-img-wrapper">
+                        <div class="status-live">LIVE</div>
+                        <img src="https://placehold.co/600x400/1e293b/10b981?text=PPS+Task+Tracker&font=poppins" alt="PPS Project" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <a href="https://si-dhoel.github.io/PPS-GABUT/" target="_blank">PPS - Task Tracker</a>
+                        </h3>
+                        <p class="project-desc">Aplikasi web sederhana untuk manajemen tugas harian (To-Do List). Membantu tracking produktivitas dengan antarmuka yang simpel dan efektif.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <a href="https://si-dhoel.github.io/PPS-GABUT/" target="_blank" class="btn-project">
+                            Live Demo <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="https://placehold.co/600x400/1e293b/38bdf8?text=Web+Portfolio" alt="Portfolio" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Personal Web Portfolio</h3>
+                        <p class="project-desc">Website portofolio pribadi yang modern, responsif, dan elegan menggunakan desain Dark Luxury.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">Responsive</span>
+                        </div>
+                        <a href="#" class="btn-project">Lihat Detail <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="https://placehold.co/600x400/1e293b/fbbf24?text=Next+Project..." alt="Coming Soon" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Python Automation</h3>
+                        <p class="project-desc">Project masa depan menggunakan Python untuk otomatisasi tugas administrasi dan data processing.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Automation</span>
+                        </div>
+                        <a href="#" class="btn-project" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Tech Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-item"><i class="fab fa-python"></i> Python</div>
+                <div class="skill-item"><i class="fab fa-java"></i> Java</div>
+                <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
+                <div class="skill-item"><i class="fab fa-html5"></i> HTML5</div>
+                <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+                <div class="skill-item"><i class="fas fa-database"></i> MySQL</div>
+            </div>
+        </section>
+
+        <section class="card" style="text-align: center;">
+            <h2>Let's Connect</h2>
+            <p style="margin-bottom: 30px; color: var(--text-secondary);">Tertarik bekerja sama atau sekadar ngobrolin coding? Hubungi saya!</p>
+            
+            <div class="social-buttons">
+                <a href="https://wa.me/6285975216127?text=Halo%20Mas%20Dhoells,%20saya%20tertarik%20bekerja%20sama." target="_blank" class="btn btn-wa">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://www.instagram.com/muss.ft" target="_blank" class="btn btn-ig">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a href="mailto:abdulllproject@gmail.com" class="btn btn-email">
+                    <i class="far fa-envelope"></i> Email Me
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© <span id="year"></span> Musa Abdul Jabbar (Dhoells). Built with <i class="fas fa-heart" style="color:var(--accent-gold)"></i> & Coffee.</p>
+    </footer>
+
+    <script>
+        // 1. Script Hitung Umur
+        function updateAge() {
+            const birthDate = new Date('2005-09-02');
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            document.getElementById('age-display').innerText = age;
+        }
+
+        // 2. Update Tahun Footer
+        document.getElementById('year').innerText = new Date().getFullYear();
+
+        updateAge();
+    </script>
+
+</body>
+</html>

@@ -19,6 +19,7 @@
             --accent-gold: #fbbf24;
             --accent-blue: #38bdf8;
             --accent-green: #10b981;
+            --accent-drive: #34A853; /* Warna Hijau Google Drive */
         }
 
         * {
@@ -223,6 +224,8 @@
             border: 1px solid rgba(255,255,255,0.05);
             transition: 0.3s;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -264,6 +267,9 @@
 
         .project-content {
             padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-title {
@@ -287,10 +293,7 @@
             font-size: 0.9rem;
             color: var(--text-secondary);
             margin-bottom: 15px;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            flex-grow: 1; /* Biar tombol rata bawah */
         }
 
         .tech-stack {
@@ -485,11 +488,11 @@
                         <h3 class="project-title">
                             <a href="https://si-dhoel.github.io/PPS-GABUT/" target="_blank">PPS - Task Tracker</a>
                         </h3>
-                        <p class="project-desc">Aplikasi web sederhana untuk manajemen tugas harian (To-Do List). Membantu tracking produktivitas dengan antarmuka yang simpel dan efektif.</p>
+                        <p class="project-desc">Aplikasi web sederhana untuk manajemen tugas harian (To-Do List). Membantu tracking produktivitas dengan antarmuka yang simpel.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">HTML</span>
                             <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">JS</span>
                         </div>
                         <a href="https://si-dhoel.github.io/PPS-GABUT/" target="_blank" class="btn-project">
                             Live Demo <i class="fas fa-external-link-alt"></i>
@@ -499,30 +502,35 @@
 
                 <div class="project-card">
                     <div class="project-img-wrapper">
-                        <img src="https://placehold.co/600x400/1e293b/38bdf8?text=Web+Portfolio" alt="Portfolio" class="project-img">
+                        <div class="status-live">LIVE</div>
+                        <img src="https://placehold.co/600x400/1e293b/38bdf8?text=DriveAuto+Cloud&font=poppins" alt="DriveAuto Project" class="project-img">
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Personal Web Portfolio</h3>
-                        <p class="project-desc">Website portofolio pribadi yang modern, responsif, dan elegan menggunakan desain Dark Luxury.</p>
+                        <h3 class="project-title">
+                            <a href="https://si-dhoel.github.io/DriveAuto/" target="_blank">DriveAuto</a>
+                        </h3>
+                        <p class="project-desc">Sistem otomatisasi upload file langsung ke Google Drive. Solusi praktis untuk backup data dan manajemen file cloud secara instan.</p>
                         <div class="tech-stack">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">Responsive</span>
+                            <span class="tech-tag">JS</span>
+                            <span class="tech-tag">API Integration</span>
+                            <span class="tech-tag">Cloud</span>
                         </div>
-                        <a href="#" class="btn-project">Lihat Detail <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://si-dhoel.github.io/DriveAuto/" target="_blank" class="btn-project">
+                            Live Demo <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
                 </div>
 
                 <div class="project-card">
                     <div class="project-img-wrapper">
-                        <img src="https://placehold.co/600x400/1e293b/fbbf24?text=Next+Project..." alt="Coming Soon" class="project-img">
+                        <img src="https://placehold.co/600x400/1e293b/fbbf24?text=Next+Project...&font=poppins" alt="Coming Soon" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Python Automation</h3>
-                        <p class="project-desc">Project masa depan menggunakan Python untuk otomatisasi tugas administrasi dan data processing.</p>
+                        <p class="project-desc">Project masa depan menggunakan Python untuk otomatisasi tugas administrasi dan data processing yang lebih kompleks.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Automation</span>
+                            <span class="tech-tag">AI</span>
                         </div>
                         <a href="#" class="btn-project" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</a>
                     </div>

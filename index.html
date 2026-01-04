@@ -20,6 +20,7 @@
             --accent-glow: rgba(251, 191, 36, 0.5);
             --accent-blue: #38bdf8;
             --accent-green: #10b981;
+            --accent-purple: #8b5cf6; /* Warna khusus Cah Gundar */
         }
 
         * {
@@ -37,6 +38,25 @@
             overflow-x: hidden;
             font-size: 15px;
         }
+
+        /* --- Scroll Animation Classes (THE CEO VIBE) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px); /* Muncul dari bawah */
+            filter: blur(10px); /* Efek Blur di awal */
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1); /* Transisi smooth banget */
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        /* Staggering delay biar munculnya gantian (opsional, otomatis via JS scroll) */
+        .project-card:nth-child(2) { transition-delay: 0.1s; }
+        .project-card:nth-child(3) { transition-delay: 0.2s; }
+        .project-card:nth-child(4) { transition-delay: 0.3s; }
 
         /* --- Background Effects --- */
         .glow-bg {
@@ -80,7 +100,6 @@
         .hero {
             text-align: center;
             padding: 30px 0 50px 0;
-            animation: fadeIn 1.2s ease;
         }
 
         .avatar-wrapper {
@@ -97,7 +116,7 @@
             border: 3px solid var(--accent-gold);
             box-shadow: 0 0 30px var(--accent-glow);
             background-color: #1e293b;
-            object-fit: cover; /* Ini penting biar foto lu gak gepeng kalau bukan persegi */
+            object-fit: cover;
         }
 
         .name-wrapper {
@@ -205,7 +224,7 @@
         }
         .map-frame:hover { opacity: 1; }
 
-        /* --- SKILL BARS --- */
+        /* --- Skill Bars --- */
         .skills-container {
             display: grid;
             grid-template-columns: 1fr;
@@ -237,17 +256,8 @@
             border-radius: 10px;
             position: relative;
             width: 0;
-            animation: fillBar 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            transition: width 1.5s ease-out; /* Animasi via JS nanti */
             box-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transform: translateX(-100%);
-            animation: shimmer 2s infinite;
         }
 
         /* --- Projects Grid --- */
@@ -334,13 +344,9 @@
             margin-top: 20px;
         }
 
-        /* --- KEYFRAME ANIMATIONS --- */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
-        @keyframes fillBar { from { width: 0; } }
         @keyframes shimmer { 100% { transform: translateX(100%); } }
 
-        /* Responsive */
         @media (min-width: 768px) {
             .info-grid { grid-template-columns: 1.3fr 0.7fr; }
             .skills-container { grid-template-columns: 1fr 1fr; }
@@ -353,11 +359,11 @@
     <div class="glow-bg glow-2"></div>
 
     <div class="container">
-        <header>
+        <header class="reveal">
             <div class="logo"><i class="fas fa-terminal"></i> DHOELLS<span style="color:var(--text-secondary)">.DEV</span></div>
         </header>
 
-        <section class="hero">
+        <section class="hero reveal">
             <div class="avatar-wrapper">
                 <img src="avatar.jpg" alt="Musa Abdul Jabbar" class="avatar">
             </div>
@@ -382,7 +388,7 @@
             </div>
         </section>
 
-        <section class="card">
+        <section class="card reveal">
             <h2>Tentang Saya</h2>
             <div class="info-grid">
                 <div class="info-text">
@@ -396,7 +402,7 @@
             </div>
         </section>
 
-        <section class="card">
+        <section class="card reveal">
             <h2>Keahlian Teknis</h2>
             <div class="skills-container">
                 
@@ -406,7 +412,7 @@
                         <span>70%</span>
                     </div>
                     <div class="progress-track">
-                        <div class="progress-fill" style="width: 70%"></div>
+                        <div class="progress-fill" data-width="70%"></div>
                     </div>
                 </div>
 
@@ -416,7 +422,7 @@
                         <span>60%</span>
                     </div>
                     <div class="progress-track">
-                        <div class="progress-fill" style="width: 60%"></div>
+                        <div class="progress-fill" data-width="60%"></div>
                     </div>
                 </div>
 
@@ -426,7 +432,7 @@
                         <span>36%</span>
                     </div>
                     <div class="progress-track">
-                        <div class="progress-fill" style="width: 36%"></div>
+                        <div class="progress-fill" data-width="36%"></div>
                     </div>
                 </div>
 
@@ -436,19 +442,36 @@
                         <span>30%</span>
                     </div>
                     <div class="progress-track">
-                        <div class="progress-fill" style="width: 30%"></div>
+                        <div class="progress-fill" data-width="30%"></div>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <section class="card" id="portfolio">
+        <section class="card reveal" id="portfolio">
             <h2>Karya Terbaru</h2>
             
             <div class="project-grid">
                 
-                <div class="project-card">
+                <div class="project-card reveal">
+                    <div class="img-wrap">
+                        <span class="live-tag" style="background: var(--accent-purple);">NEW</span>
+                        <img src="https://placehold.co/600x400/1e293b/8b5cf6?text=CAH+GUNDAR&font=poppins" alt="CAH GUNDAR" class="project-img">
+                    </div>
+                    <div class="p-content">
+                        <h3 class="p-title"><a href="https://si-dhoel.github.io/CAH-GUNDAR/" target="_blank">CAH GUNDAR</a></h3>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Portal</span>
+                            <span class="tech-badge">Campus</span>
+                            <span class="tech-badge">Info</span>
+                        </div>
+                        <p class="p-desc">Platform khusus komunitas dan informasi untuk mahasiswa Gunadarma. Solusi digital untuk kebutuhan kampus.</p>
+                        <a href="https://si-dhoel.github.io/CAH-GUNDAR/" target="_blank" class="btn-link">Kunjungi Portal</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
                     <div class="img-wrap">
                         <span class="live-tag">LIVE</span>
                         <img src="https://placehold.co/600x400/1e293b/10b981?text=PPS+Tracker&font=poppins" alt="PPS Task Tracker" class="project-img">
@@ -460,12 +483,12 @@
                             <span class="tech-badge">CSS</span>
                             <span class="tech-badge">JS</span>
                         </div>
-                        <p class="p-desc">Aplikasi web manajemen tugas (To-Do List) sederhana untuk meningkatkan produktivitas harian dengan antarmuka yang bersih.</p>
+                        <p class="p-desc">Aplikasi web manajemen tugas (To-Do List) sederhana untuk meningkatkan produktivitas harian.</p>
                         <a href="https://si-dhoel.github.io/PPS-GABUT/" target="_blank" class="btn-link">Lihat Demo</a>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card reveal">
                     <div class="img-wrap">
                         <span class="live-tag">LIVE</span>
                         <img src="https://placehold.co/600x400/1e293b/38bdf8?text=DriveAuto&font=poppins" alt="DriveAuto Cloud" class="project-img">
@@ -473,16 +496,16 @@
                     <div class="p-content">
                         <h3 class="p-title"><a href="https://si-dhoel.github.io/DriveAuto/" target="_blank">DriveAuto Cloud</a></h3>
                         <div class="tech-badges">
-                            <span class="tech-badge">API Integration</span>
-                            <span class="tech-badge">Google Cloud</span>
+                            <span class="tech-badge">API</span>
+                            <span class="tech-badge">Cloud</span>
                             <span class="tech-badge">JS</span>
                         </div>
-                        <p class="p-desc">Sistem otomatisasi untuk meng-upload file langsung ke Google Drive. Solusi praktis untuk backup data cloud.</p>
+                        <p class="p-desc">Sistem otomatisasi upload file langsung ke Google Drive. Solusi praktis untuk backup data cloud.</p>
                         <a href="https://si-dhoel.github.io/DriveAuto/" target="_blank" class="btn-link">Lihat Demo</a>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card reveal">
                     <div class="img-wrap">
                         <img src="https://placehold.co/600x400/1e293b/fbbf24?text=Coming+Soon&font=poppins" alt="Coming Soon" class="project-img">
                     </div>
@@ -492,7 +515,7 @@
                             <span class="tech-badge">Python</span>
                             <span class="tech-badge">AI/ML</span>
                         </div>
-                        <p class="p-desc">Pengembangan bot otomatisasi cerdas untuk efisiensi tugas administrasi dan pemrosesan data.</p>
+                        <p class="p-desc">Pengembangan bot otomatisasi cerdas untuk efisiensi tugas administrasi.</p>
                         <span class="btn-link btn-disabled">Segera Hadir</span>
                     </div>
                 </div>
@@ -502,12 +525,12 @@
 
     </div>
 
-    <footer>
+    <footer class="reveal">
         <p>© <span id="year"></span> Musa Abdul Jabbar (Dhoells). All Rights Reserved.</p>
     </footer>
 
     <script>
-        // Script Hitung Umur Otomatis
+        // 1. Script Hitung Umur
         function updateAge() {
             const birthDate = new Date('2005-09-02');
             const today = new Date();
@@ -518,6 +541,31 @@
         }
         document.getElementById('year').innerText = new Date().getFullYear();
         updateAge();
+
+        // 2. SCROLL ANIMATION (CEO VIBE) - Intersection Observer
+        const observerOptions = {
+            threshold: 0.1 // Muncul ketika 10% elemen terlihat
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active'); // Tambah class active biar muncul
+                    
+                    // Khusus Skill Bar: Animasi width pas muncul
+                    if (entry.target.classList.contains('card') && entry.target.querySelector('.progress-fill')) {
+                        const bars = entry.target.querySelectorAll('.progress-fill');
+                        bars.forEach(bar => {
+                            bar.style.width = bar.getAttribute('data-width');
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Target semua elemen yang mau di-animasi
+        const hiddenElements = document.querySelectorAll('.reveal');
+        hiddenElements.forEach((el) => observer.observe(el));
     </script>
 
 </body>
